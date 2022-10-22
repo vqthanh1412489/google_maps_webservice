@@ -134,7 +134,7 @@ const _$PriceLevelEnumMap = {
 PlaceDetails _$PlaceDetailsFromJson(Map<String, dynamic> json) {
   return PlaceDetails(
     adrAddress: json['adr_address'] as String?,
-    name: json['name'] as String,
+    name: json['name'] as String? ?? 'namePlaceDetailsDefault',
     placeId: json['place_id'] as String,
     utcOffset: json['utc_offset'] as num?,
     id: json['id'] as String?,
@@ -224,8 +224,8 @@ Map<String, dynamic> _$OpeningHoursDetailToJson(OpeningHoursDetail instance) =>
 OpeningHoursPeriodDate _$OpeningHoursPeriodDateFromJson(
     Map<String, dynamic> json) {
   return OpeningHoursPeriodDate(
-    day: json['day'] as int,
-    time: json['time'] as String,
+    day: json['day'] as int? ?? 1,
+    time: json['time'] as String? ?? '00:00',
   );
 }
 
@@ -256,9 +256,9 @@ Map<String, dynamic> _$OpeningHoursPeriodToJson(OpeningHoursPeriod instance) =>
 
 Photo _$PhotoFromJson(Map<String, dynamic> json) {
   return Photo(
-    photoReference: json['photo_reference'] as String,
-    height: json['height'] as num,
-    width: json['width'] as num,
+    photoReference: json['photo_reference'] as String? ?? 'PhotophotoReference',
+    height: json['height'] as num? ?? 200,
+    width: json['width'] as num? ?? 200,
     htmlAttributions: (json['html_attributions'] as List<dynamic>?)
             ?.map((e) => e as String)
             .toList() ??
@@ -310,14 +310,17 @@ Map<String, dynamic> _$PlacesDetailsResponseToJson(
 
 Review _$ReviewFromJson(Map<String, dynamic> json) {
   return Review(
-    authorName: json['author_name'] as String,
-    authorUrl: json['author_url'] as String,
+    authorName: json['author_name'] as String? ?? "Review_Author's name",
+    authorUrl: json['author_url'] as String? ??
+        'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
     language: json['language'] as String?,
-    profilePhotoUrl: json['profile_photo_url'] as String,
-    rating: json['rating'] as num,
-    relativeTimeDescription: json['relative_time_description'] as String,
-    text: json['text'] as String,
-    time: json['time'] as num,
+    profilePhotoUrl: json['profile_photo_url'] as String? ??
+        'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+    rating: json['rating'] as num? ?? 5,
+    relativeTimeDescription: json['relative_time_description'] as String? ??
+        'Review_relative_time_description',
+    text: json['text'] as String? ?? 'Review_text',
+    time: json['time'] as num? ?? 0,
   );
 }
 
@@ -392,8 +395,8 @@ Map<String, dynamic> _$PredictionToJson(Prediction instance) =>
 
 Term _$TermFromJson(Map<String, dynamic> json) {
   return Term(
-    offset: json['offset'] as num,
-    value: json['value'] as String,
+    offset: json['offset'] as num? ?? 0,
+    value: json['value'] as String? ?? 'Term_value',
   );
 }
 
@@ -404,8 +407,8 @@ Map<String, dynamic> _$TermToJson(Term instance) => <String, dynamic>{
 
 MatchedSubstring _$MatchedSubstringFromJson(Map<String, dynamic> json) {
   return MatchedSubstring(
-    offset: json['offset'] as num,
-    length: json['length'] as num,
+    offset: json['offset'] as num? ?? 0,
+    length: json['length'] as num? ?? 0,
   );
 }
 
@@ -417,7 +420,7 @@ Map<String, dynamic> _$MatchedSubstringToJson(MatchedSubstring instance) =>
 
 StructuredFormatting _$StructuredFormattingFromJson(Map<String, dynamic> json) {
   return StructuredFormatting(
-    mainText: json['main_text'] as String,
+    mainText: json['main_text'] as String? ?? 'StructuredFormatting_mainText',
     mainTextMatchedSubstrings: (json['main_text_matched_substrings']
                 as List<dynamic>?)
             ?.map((e) => MatchedSubstring.fromJson(e as Map<String, dynamic>))
